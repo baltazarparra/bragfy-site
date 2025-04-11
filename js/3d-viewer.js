@@ -425,15 +425,15 @@ function initThreeJS() {
     currentRotationY += (targetRotationY - currentRotationY) * 0.05;
 
     // Rotação autônoma suave adicional
-    const time = Date.now() * 0.0002;
-    const autoRotationY = Math.sin(time) * 0.03;
+    const time = Date.now() * 0.0001;
+    const autoRotationY = Math.sin(time) * 0.01;
 
     // Aplicar rotação ao grupo do planeta
     planetGroup.rotation.x = currentRotationX;
     planetGroup.rotation.y = currentRotationY + autoRotationY;
 
     // Rotação própria do planeta (em seu eixo)
-    planetMesh.rotation.y += 0.001;
+    planetMesh.rotation.y += 0.005;
 
     // Animar sutilmente a atmosfera
     const pulseScale = 1 + Math.sin(Date.now() * 0.0008) * 0.002;
