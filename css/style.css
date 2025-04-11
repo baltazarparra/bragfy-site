@@ -406,7 +406,7 @@ a.brand-text:hover {
 
 @media (min-width: 768px) {
     .footer-content {
-        grid-template-columns: 1.5fr 1fr 1fr;
+        grid-template-columns: 4fr 1fr;
         gap: 3rem;
     }
 }
