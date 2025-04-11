@@ -454,6 +454,15 @@ function initThreeJS() {
 
     // Renderizar a cena
     renderer.render(scene, camera);
+
+    // Marcar como carregado após a primeira renderização
+    if (!container.classList.contains("loaded")) {
+      // Adicionar pequeno atraso para garantir que a renderização esteja completa
+      setTimeout(() => {
+        container.classList.add("loaded");
+        console.log("Modelo 3D carregado com sucesso");
+      }, 500);
+    }
   }
 
   // Iniciar animação

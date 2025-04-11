@@ -35,14 +35,17 @@
     <!-- Estilos -->
     <link rel="stylesheet" href="css/style.css" />
 
-    <!-- Three.js a partir de CDN -->
-    <script src="https://unpkg.com/three@0.149.0/build/three.min.js"></script>
+    <!-- Three.js a partir de CDN com atributo defer -->
+    <script
+      src="https://unpkg.com/three@0.149.0/build/three.min.js"
+      defer
+    ></script>
 
-    <!-- Loader personalizado -->
-    <script src="js/vendor/GLTFLoader.js"></script>
+    <!-- Loader personalizado com atributo defer -->
+    <script src="js/vendor/GLTFLoader.js" defer></script>
 
-    <!-- Three.js viewer script -->
-    <script src="js/3d-viewer.js"></script>
+    <!-- Three.js viewer script com atributo defer -->
+    <script src="js/3d-viewer.js" defer></script>
 
     <!-- Script para verificar se o GLTFLoader foi carregado corretamente -->
     <script>
@@ -188,7 +191,13 @@
             >
           </div>
           <div class="hero-image">
-            <div id="viewer" class="model-viewer"></div>
+            <div id="viewer" class="model-viewer">
+              <div class="loader">
+                <span class="dot-1"></span>
+                <span class="dot-2"></span>
+                <span class="dot-3"></span>
+              </div>
+            </div>
             <!-- Fallback para quando JavaScript está desativado -->
             <noscript>
               <div class="fallback-image">

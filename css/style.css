@@ -220,6 +220,7 @@ a.brand-text:hover {
     margin: 0 auto;
     border-radius: var(--borda-raio);
     overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .model-viewer canvas {
@@ -227,6 +228,102 @@ a.brand-text:hover {
     height: 100% !important;
     display: block;
     outline: none;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+}
+
+.model-viewer.loaded canvas {
+    opacity: 1;
+}
+
+/* Loader para o modelo 3D */
+.model-viewer .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    z-index: 10;
+}
+
+/* Ponto central */
+.model-viewer .loader::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* Pontos orbitais */
+.model-viewer .loader::after,
+.model-viewer .loader .dot-1,
+.model-viewer .loader .dot-2,
+.model-viewer .loader .dot-3 {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    transform-origin: 0 30px;
+}
+
+.model-viewer .loader::after {
+    animation: orbit 1.5s linear infinite;
+}
+
+.model-viewer .loader .dot-1 {
+    animation: orbit 2s linear infinite;
+    animation-delay: -0.4s;
+}
+
+.model-viewer .loader .dot-2 {
+    animation: orbit 1.8s linear infinite;
+    animation-delay: -0.8s;
+}
+
+.model-viewer .loader .dot-3 {
+    animation: orbit 2.2s linear infinite;
+    animation-delay: -1.2s;
+}
+
+/* Ocultar loader quando modelo estiver carregado */
+#viewer.loaded .loader {
+    display: none;
+}
+
+/* Animações */
+@keyframes orbit {
+    0% {
+        transform: rotate(0deg) translateX(30px) rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg) translateX(30px) rotate(-360deg);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
 }
 
 /* Indicador visual para dispositivos móveis de que o modelo é apenas decorativo */
