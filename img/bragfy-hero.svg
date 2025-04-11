@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" fill="none">
+  <!-- Background shape -->
+  <rect x="100" y="50" width="400" height="300" rx="20" fill="#f3f4f6"/>
+  
+  <!-- Telegram app frame -->
+  <rect x="150" y="80" width="300" height="240" rx="16" fill="white" stroke="#e5e7eb" stroke-width="2"/>
+  
+  <!-- Header -->
+  <rect x="150" y="80" width="300" height="50" rx="16" fill="#2563eb"/>
+  <circle cx="175" cy="105" r="15" fill="white"/>
+  <text x="200" y="112" font-family="Arial" font-size="16" fill="white" font-weight="bold">Bragfy Bot</text>
+  
+  <!-- Chat bubbles -->
+  <!-- User message -->
+  <rect x="200" y="150" width="230" height="40" rx="10" fill="#e5e7eb"/>
+  <text x="215" y="175" font-family="Arial" font-size="12" fill="#4b5563">Hoje trabalhei no projeto XYZ</text>
+  
+  <!-- Bot message -->
+  <rect x="170" y="200" width="260" height="100" rx="10" fill="#eff6ff"/>
+  <text x="185" y="225" font-family="Arial" font-size="12" fill="#1e40af" font-weight="bold">Atividades Documentadas:</text>
+  <text x="185" y="250" font-family="Arial" font-size="12" fill="#4b5563">- Projeto XYZ: Desenvolvimento</text>
+  <text x="185" y="270" font-family="Arial" font-size="12" fill="#4b5563">- Tempo gasto: 4h</text>
+  <text x="185" y="290" font-family="Arial" font-size="12" fill="#4b5563">- Status: Em progresso</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="450" cy="350" r="30" fill="#bfdbfe"/>
+  <circle cx="150" cy="90" r="40" fill="#dbeafe"/>
+  <circle cx="500" cy="150" r="25" fill="#eff6ff"/>
+</svg> 
