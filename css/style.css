@@ -681,3 +681,311 @@ a.brand-text:hover {
         font-size: 1.8rem;
     }
 }
+
+/* PÁGINA DE ARTIGO
+------------------------------- */
+.page-article {
+    /* Adiciona um pouco de espaço extra para a leitura do artigo */
+    line-height: 1.6;
+}
+
+/* Estilo do cabeçalho do artigo */
+.article-header {
+    position: relative;
+    margin-bottom: 4rem;
+}
+
+.article-header h1 {
+    padding-top: 8rem;
+    margin-bottom: 3rem;
+    max-width: 90rem;
+    font-size: clamp(3rem, 5vw, 5rem);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.article-hero-image {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    max-height: 60vh;
+}
+
+.article-hero-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 60vh;
+    border-radius: var(--borda-raio);
+    display: block;
+}
+
+/* Container do corpo do artigo */
+.article-body {
+    max-width: 78rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Estilização de seções do artigo */
+.article-section {
+    margin-bottom: 5rem;
+    overflow: hidden;
+    /* Para conter floats internos */
+}
+
+/* Estilização de texto no artigo */
+.article-intro {
+    font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+    color: var(--cor-texto-primario);
+    margin-bottom: 3rem;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.article-content h2 {
+    font-size: clamp(2.4rem, 4vw, 3.2rem);
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+    color: var(--cor-texto-primario);
+}
+
+.article-content h3 {
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: var(--cor-texto-primario);
+}
+
+.article-content p {
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.6rem, 2vw, 1.8rem);
+    line-height: 1.7;
+}
+
+.article-content strong {
+    color: var(--cor-texto-primario);
+    font-weight: 600;
+}
+
+/* Estilização de imagens no artigo */
+.article-content figure {
+    margin: 3rem 0;
+    position: relative;
+    max-width: 100%;
+}
+
+.article-content figure img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--borda-raio);
+    display: block;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.article-content figcaption {
+    font-size: 1.4rem;
+    color: var(--cor-texto-secundario);
+    text-align: center;
+    margin-top: 1rem;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Layouts de imagem específicos */
+.article-image-full {
+    width: 100%;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    display: block;
+    clear: both;
+}
+
+.article-image-full img {
+    width: 100%;
+    max-height: 50vh;
+    object-fit: cover;
+    border-radius: var(--borda-raio);
+}
+
+/* Layouts de imagem específicos */
+.article-image-left,
+.article-image-right {
+    margin: 2rem 0;
+    width: 100%;
+    display: block;
+}
+
+.article-image-left img,
+.article-image-right img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--borda-raio);
+}
+
+/* Estilização de listas no artigo */
+.article-list {
+    margin: 2rem 0 3rem 0;
+    padding-left: 2rem;
+}
+
+.article-list li {
+    margin-bottom: 1.5rem;
+    position: relative;
+    list-style-type: none;
+    color: var(--cor-texto-secundario);
+    padding-left: 2rem;
+}
+
+.article-list li::before {
+    content: '•';
+    color: var(--cor-destaque-links);
+    position: absolute;
+    left: 0;
+    opacity: 0.9;
+}
+
+/* Seção CTA no final do artigo */
+.article-cta {
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 3rem;
+    border-radius: var(--borda-raio);
+    text-align: center;
+    margin: 6rem 0 4rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.article-cta .btn {
+    margin: 0;
+}
+
+.article-cta h3 {
+    margin-bottom: 1.5rem;
+    font-size: clamp(2rem, 3vw, 2.4rem);
+}
+
+.article-cta p {
+    margin-bottom: 3rem;
+    font-size: clamp(1.6rem, 2vw, 1.8rem);
+    max-width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Media queries para desktop */
+@media (min-width: 768px) {
+    .article-header h1 {
+        padding-top: 10rem;
+        text-align: left;
+    }
+
+    .article-body {
+        padding: 0 4rem;
+    }
+
+    .article-image-left,
+    .article-image-right {
+        max-width: 50%;
+        margin: 2rem 0;
+        display: block;
+    }
+
+    .article-image-left {
+        float: left;
+        margin-right: 3rem;
+        margin-top: 0.5rem;
+        margin-bottom: 2rem;
+        clear: left;
+    }
+
+    .article-image-right {
+        float: right;
+        margin-left: 3rem;
+        margin-top: 0.5rem;
+        margin-bottom: 2rem;
+        clear: right;
+    }
+
+    .article-cta {
+        padding: 6rem;
+        clear: both;
+    }
+}
+
+@media (min-width: 992px) {
+    .article-header h1 {
+        font-size: 4.8rem;
+    }
+
+    .article-hero-image img {
+        max-height: 70vh;
+    }
+
+    .article-image-full img {
+        max-height: 60vh;
+    }
+}
+
+/* Clearfix para imagens flutuantes */
+.article-section::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* CALLOUT DE ARTIGO NA PÁGINA INICIAL
+------------------------------- */
+.article-callout {
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 5rem 0;
+}
+
+.article-callout-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.article-callout-text {
+    flex: 1;
+}
+
+.article-callout-text h2 {
+    margin-bottom: 2rem;
+}
+
+.article-callout-text p {
+    margin-bottom: 3rem;
+    font-size: clamp(1.6rem, 2vw, 1.8rem);
+    max-width: 60rem;
+}
+
+.article-callout-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.article-callout-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--borda-raio);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 992px) {
+    .article-callout-content {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .article-callout-text {
+        padding-right: 4rem;
+    }
+}
