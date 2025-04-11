@@ -1117,64 +1117,55 @@ a.brand-text:hover {
 
 .insight-card {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(29, 29, 31, 0.6);
-    background-image: radial-gradient(circle at 50% 100%,
-            rgba(255, 255, 255, 0.05) 0%,
-            rgba(29, 29, 31, 0.8) 60%);
-    background-size: 200% 200%;
-    background-position: 0% 0%;
-    border-radius: 1.6rem;
-    padding: var(--space-l) var(--space-l);
-    margin: var(--space-xs);
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.08) 0%, transparent 70%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
     border: 1px solid var(--cor-borda-sutil);
-    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.12), 0px 8px 24px rgba(0, 0, 0, 0.08);
-    animation: subtleShimmer 18s infinite alternate linear;
-    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-        box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    perspective: 1000px;
+    border-radius: var(--borda-raio);
+    padding: var(--space-l);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 1;
+    background-color: rgba(16, 16, 16, 0.7);
+    backdrop-filter: blur(5px);
 }
 
-/* Animação de hover para o card */
+.insight-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.insight-card:hover::before {
+    opacity: 1;
+}
+
 .insight-card:hover {
     transform: translateY(-2px) scale(1.01);
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16),
-        0px 10px 32px rgba(0, 0, 0, 0.12);
+        0px 10px 32px rgba(0, 0, 0, 0.12),
+        0 0 25px rgba(180, 210, 255, 0.2),
+        0 0 40px rgba(41, 151, 255, 0.18);
     background-position: 100% 100%;
 }
 
-.insight-content {
-    position: relative;
-    z-index: 2;
-    flex: 1;
-    transform: translateZ(0);
-    transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-.insight-card:hover .insight-content {
-    transform: translateZ(20px);
-}
-
 .insight-card h3 {
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 600;
+    line-height: var(--line-height-titulo);
     margin-bottom: var(--space-m);
     color: var(--cor-texto-primario);
-    transition: transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1),
-        text-shadow 0.6s ease;
-}
-
-.insight-card:hover h3 {
-    transform: translateZ(40px);
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.02em;
 }
 
 .insight-card p {
     font-size: clamp(1.6rem, 2vw, 1.8rem);
-    color: var(--cor-texto-secundario);
+    color: white;
     margin-bottom: var(--space-l);
     max-width: 60rem;
     line-height: var(--line-height-texto);
@@ -1313,19 +1304,16 @@ a.brand-text:hover {
 }
 
 @keyframes subtleGlow {
-    0% {
+
+    0%,
+    100% {
+        box-shadow: 0 0 15px 3px rgba(180, 210, 255, 0.08), 0 0 40px 10px rgba(41, 151, 255, 0.05);
         opacity: 0.5;
-        transform: translateX(0) translateY(0);
     }
 
     50% {
-        opacity: 0.7;
-        transform: translateX(-10px) translateY(-10px);
-    }
-
-    100% {
-        opacity: 0.5;
-        transform: translateX(10px) translateY(5px);
+        box-shadow: 0 0 25px 5px rgba(180, 210, 255, 0.15), 0 0 50px 15px rgba(41, 151, 255, 0.08);
+        opacity: 0.8;
     }
 }
 
