@@ -850,7 +850,6 @@ a.brand-text:hover {
 
 /* Seção CTA no final do artigo */
 .article-cta {
-    background-color: rgba(255, 255, 255, 0.03);
     padding: 3rem;
     border-radius: var(--borda-raio);
     text-align: center;
