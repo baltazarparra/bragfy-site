@@ -1,17 +1,53 @@
 /* RESET E VARIÁVEIS
 ------------------------------- */
 :root {
+    /* Cores */
     --cor-fundo: #000000;
     --cor-texto-primario: #F5F5F7;
     --cor-texto-secundario: #86868B;
     --cor-destaque-links: #2997FF;
     --cor-borda-sutil: #424245;
-    --espacamento-secao-mobile: 4rem;
-    --espacamento-secao-desktop: 8rem;
-    --espacamento-componente: 2rem;
+
+    /* Sistema de espaçamento */
+    --space-xxxs: 0.25rem;
+    /* 4px */
+    --space-xxs: 0.5rem;
+    /* 8px */
+    --space-xs: 1rem;
+    /* 16px */
+    --space-s: 1.5rem;
+    /* 24px */
+    --space-m: 2rem;
+    /* 32px */
+    --space-l: 3rem;
+    /* 48px */
+    --space-xl: 4rem;
+    /* 64px */
+    --space-xxl: 6rem;
+    /* 96px */
+    --space-xxxl: 8rem;
+    /* 128px */
+
+    /* Aliases para compatibilidade com código existente */
+    --espacamento-secao-mobile: var(--space-xl);
+    --espacamento-secao-desktop: var(--space-xxxl);
+    --espacamento-componente: var(--space-m);
+
+    /* Outros */
     --borda-raio: 0.8rem;
     --transicao-padrao: all 0.2s ease;
     --largura-maxima-container: 120rem;
+
+    /* Line heights */
+    --line-height-titulo: 1.2;
+    --line-height-texto: 1.6;
+    --line-height-subtitulo: 1.4;
+
+    /* Gap padrões */
+    --gap-xs: var(--space-xs);
+    --gap-s: var(--space-s);
+    --gap-m: var(--space-m);
+    --gap-l: var(--space-l);
 }
 
 *,
@@ -68,41 +104,42 @@ h4,
 h5,
 h6 {
     font-weight: 600;
-    line-height: 1.1;
-    margin-bottom: 2rem;
+    line-height: var(--line-height-titulo);
+    margin-bottom: var(--space-m);
     letter-spacing: -0.02em;
 }
 
 h1 {
     font-size: clamp(3.2rem, 8vw, 5.6rem);
     letter-spacing: -0.03em;
-    margin-bottom: 2.5rem;
+    margin-bottom: var(--space-l);
 }
 
 h2 {
     font-size: clamp(2.6rem, 5vw, 4.2rem);
-    margin-bottom: 2.5rem;
+    margin-bottom: var(--space-m);
 }
 
 h3 {
     font-size: clamp(2rem, 3vw, 3rem);
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-s);
 }
 
 p {
-    margin-bottom: 2.5rem;
+    margin-bottom: var(--space-m);
     color: var(--cor-texto-secundario);
     font-size: clamp(1.6rem, 2vw, 1.8rem);
-    line-height: 1.6;
+    line-height: var(--line-height-texto);
 }
 
 .subtitle {
     font-size: clamp(1.8rem, 3vw, 2.4rem);
     color: var(--cor-texto-secundario);
-    margin-bottom: 3rem;
+    margin-bottom: var(--space-l);
     letter-spacing: -0.01em;
     font-weight: 400;
     max-width: 65rem;
+    line-height: var(--line-height-subtitulo);
 }
 
 /* LAYOUT & CONTAINERS
@@ -111,7 +148,7 @@ p {
     width: 100%;
     max-width: var(--largura-maxima-container);
     margin: 0 auto;
-    padding: 0 2.4rem;
+    padding: 0 var(--space-m);
 }
 
 .section {
@@ -122,7 +159,7 @@ p {
 /* HEADER
 ------------------------------- */
 .header {
-    padding: 1.6rem 0;
+    padding: var(--space-s) 0;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -169,7 +206,7 @@ a.brand-text:hover {
 
     .nav-list {
         display: flex;
-        gap: 3.2rem;
+        gap: var(--gap-l);
         align-items: center;
     }
 
@@ -189,7 +226,7 @@ a.brand-text:hover {
 /* HERO SECTION
 ------------------------------- */
 .hero {
-    padding: 4rem 0 6rem;
+    padding: var(--space-xl) 0 var(--space-xxl);
     position: relative;
     overflow: hidden;
     background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.07) 21%, rgba(255, 255, 255, 0.04) 40%, rgba(30, 30, 32, 0.02) 60%, rgba(0, 0, 0, 0) 0), #0f0d0d;
@@ -198,7 +235,7 @@ a.brand-text:hover {
 .hero .container {
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: var(--gap-l);
 }
 
 .hero-content {
@@ -352,13 +389,13 @@ a.brand-text:hover {
 
 @media (min-width: 992px) {
     .hero {
-        padding: 10rem 0 8rem;
+        padding: var(--space-xxl) 0 var(--space-xxxl);
     }
 
     .hero .container {
         flex-direction: row;
         align-items: center;
-        gap: 6rem;
+        gap: var(--gap-l);
     }
 
     .hero-content {
@@ -379,8 +416,8 @@ a.brand-text:hover {
 ------------------------------- */
 .features-grid {
     display: grid;
-    gap: 4rem;
-    margin-top: 4rem;
+    gap: var(--gap-l);
+    margin-top: var(--space-xl);
 }
 
 .feature-card {
@@ -392,7 +429,7 @@ a.brand-text:hover {
 .feature-icon {
     width: 5rem;
     height: 5rem;
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-m);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -411,13 +448,13 @@ a.brand-text:hover {
 }
 
 .feature-card h3 {
-    margin-top: 0.5rem;
+    margin-top: var(--space-xxs);
 }
 
 @media (min-width: 768px) {
     .features-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 5rem;
+        gap: var(--gap-l);
     }
 }
 
@@ -425,12 +462,12 @@ a.brand-text:hover {
 ------------------------------- */
 .benefits-grid {
     display: grid;
-    gap: 3.5rem;
-    margin-top: 2rem;
+    gap: var(--gap-l);
+    margin-top: var(--space-m);
 }
 
 .benefit-item {
-    padding: 2rem 0;
+    padding: var(--space-m) 0;
     position: relative;
 }
 
@@ -448,7 +485,7 @@ a.brand-text:hover {
 @media (min-width: 768px) {
     .benefits-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 5rem;
+        gap: var(--gap-l);
     }
 
     .benefit-item {
@@ -460,52 +497,50 @@ a.brand-text:hover {
     }
 }
 
-
-
 /* CTA SECTION
 ------------------------------- */
 .cta-section {
     text-align: center;
-    padding: 6rem 0 7rem;
+    padding: var(--space-xxl) 0;
 }
 
 .cta-subtitle {
     max-width: 60rem;
-    margin: 0 auto 4rem;
+    margin: 0 auto var(--space-xl);
 }
 
 /* FOOTER
 ------------------------------- */
 .footer {
-    padding: 5rem 0;
+    padding: var(--space-xl) 0;
     color: var(--cor-texto-secundario);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-content {
     display: grid;
-    gap: 4rem;
+    gap: var(--gap-l);
 }
 
 .footer-logo p {
-    margin-top: 1.5rem;
+    margin-top: var(--space-s);
     font-size: 1.4rem;
     opacity: 0.7;
 }
 
 .footer-logo .brand-text {
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-xs);
     display: inline-block;
 }
 
 .footer h4 {
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-m);
     font-size: 1.6rem;
     color: var(--cor-texto-primario);
 }
 
 .footer ul li {
-    margin-bottom: 1.6rem;
+    margin-bottom: var(--space-s);
 }
 
 .footer a {
@@ -520,7 +555,7 @@ a.brand-text:hover {
 @media (min-width: 768px) {
     .footer-content {
         grid-template-columns: 4fr 1fr;
-        gap: 3rem;
+        gap: var(--gap-s);
     }
 }
 
@@ -528,7 +563,7 @@ a.brand-text:hover {
 ------------------------------- */
 .btn {
     display: inline-block;
-    padding: 1.2rem 2.4rem;
+    padding: var(--space-xs) var(--space-m);
     font-size: 1.5rem;
     font-weight: 500;
     border-radius: 9999px;
@@ -550,7 +585,7 @@ a.brand-text:hover {
     color: var(--cor-texto-primario);
     border: none;
     position: relative;
-    padding: 1.2rem 2.4rem;
+    padding: var(--space-xs) var(--space-m);
     isolation: isolate;
     transition: transform 0.3s ease, box-shadow 0.4s ease;
 }
@@ -624,12 +659,12 @@ a.brand-text:hover {
 }
 
 .btn-large {
-    padding: 1.6rem 3.2rem;
+    padding: var(--space-s) var(--space-l);
     font-size: 1.6rem;
 }
 
 .btn-large.btn-primary {
-    padding: 1.6rem 3.2rem;
+    padding: var(--space-s) var(--space-l);
 }
 
 /* ACCESSIBILITY & UTILITIES
@@ -693,37 +728,37 @@ a.brand-text:hover {
 .content-area {
     max-width: 78rem;
     margin: 0 auto;
-    padding: 10rem 2.4rem;
-    line-height: 1.7;
+    padding: var(--space-xxl) var(--space-m);
+    line-height: var(--line-height-texto);
 }
 
 .content-area h2 {
-    margin-top: 5rem;
+    margin-top: var(--space-xl);
     font-size: 2.4rem;
     color: var(--cor-texto-primario);
     border-bottom: 1px solid var(--cor-borda-sutil);
-    padding-bottom: 1rem;
+    padding-bottom: var(--space-xs);
     opacity: 0.95;
 }
 
 .content-area h3 {
-    margin-top: 3rem;
+    margin-top: var(--space-l);
     font-size: 2rem;
     color: var(--cor-texto-primario);
 }
 
 .content-area p {
-    margin-bottom: 2.4rem;
+    margin-bottom: var(--space-m);
     font-size: 1.6rem;
 }
 
 .content-area ul {
-    margin-bottom: 3rem;
-    padding-left: 2.5rem;
+    margin-bottom: var(--space-l);
+    padding-left: var(--space-l);
 }
 
 .content-area ul li {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-s);
     position: relative;
     list-style-type: none;
     color: var(--cor-texto-secundario);
@@ -733,19 +768,19 @@ a.brand-text:hover {
     content: '•';
     color: var(--cor-destaque-links);
     position: absolute;
-    left: -2rem;
+    left: calc(var(--space-m) * -1);
     opacity: 0.9;
 }
 
 .terms-list,
 .privacy-list {
-    margin-left: 2rem;
-    margin-bottom: 3rem;
+    margin-left: var(--space-m);
+    margin-bottom: var(--space-l);
 }
 
 .terms-list li,
 .privacy-list li {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-s);
     position: relative;
     list-style-type: none;
     color: var(--cor-texto-secundario);
@@ -756,17 +791,17 @@ a.brand-text:hover {
     content: '•';
     color: var(--cor-destaque-links);
     position: absolute;
-    left: -2rem;
+    left: calc(var(--space-m) * -1);
     opacity: 0.9;
 }
 
 .privacy-list li {
-    margin-bottom: 2.5rem;
+    margin-bottom: var(--space-m);
 }
 
 @media (max-width: 768px) {
     .content-area {
-        padding: 8rem 2.4rem;
+        padding: var(--space-xxxl) var(--space-m);
     }
 
     .content-area h2 {
@@ -782,18 +817,18 @@ a.brand-text:hover {
 ------------------------------- */
 .page-article {
     /* Adiciona um pouco de espaço extra para a leitura do artigo */
-    line-height: 1.6;
+    line-height: var(--line-height-texto);
 }
 
 /* Estilo do cabeçalho do artigo */
 .article-header {
     position: relative;
-    margin-bottom: 4rem;
+    margin-bottom: var(--space-xl);
 }
 
 .article-header h1 {
-    padding-top: 8rem;
-    margin-bottom: 3rem;
+    padding-top: var(--space-xxxl);
+    margin-bottom: var(--space-l);
     max-width: 90rem;
     font-size: clamp(3rem, 5vw, 5rem);
     text-align: center;
@@ -822,12 +857,12 @@ a.brand-text:hover {
 .article-body {
     max-width: 78rem;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 var(--space-m);
 }
 
 /* Estilização de seções do artigo */
 .article-section {
-    margin-bottom: 5rem;
+    margin-bottom: var(--space-xl);
     overflow: hidden;
     /* Para conter floats internos */
 }
@@ -836,39 +871,34 @@ a.brand-text:hover {
 .article-intro {
     font-size: clamp(1.8rem, 2.5vw, 2.2rem);
     color: var(--cor-texto-primario);
-    margin-bottom: 3rem;
-    line-height: 1.5;
+    margin-bottom: var(--space-l);
+    line-height: var(--line-height-subtitulo);
     font-weight: 500;
 }
 
 .article-content h2 {
     font-size: clamp(2.4rem, 4vw, 3.2rem);
-    margin-top: 4rem;
-    margin-bottom: 1.5rem;
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-s);
     color: var(--cor-texto-primario);
 }
 
 .article-content h3 {
     font-size: clamp(2rem, 3vw, 2.6rem);
-    margin-top: 3rem;
-    margin-bottom: 1rem;
+    margin-top: var(--space-l);
+    margin-bottom: var(--space-xs);
     color: var(--cor-texto-primario);
 }
 
 .article-content p {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-s);
     font-size: clamp(1.6rem, 2vw, 1.8rem);
-    line-height: 1.7;
-}
-
-.article-content strong {
-    color: var(--cor-texto-primario);
-    font-weight: 600;
+    line-height: var(--line-height-texto);
 }
 
 /* Estilização de imagens no artigo */
 .article-content figure {
-    margin: 3rem 0;
+    margin: var(--space-l) 0;
     position: relative;
     max-width: 100%;
 }
@@ -886,7 +916,7 @@ a.brand-text:hover {
     font-size: 1.4rem;
     color: var(--cor-texto-secundario);
     text-align: center;
-    margin-top: 1rem;
+    margin-top: var(--space-xs);
     font-style: italic;
     opacity: 0.8;
 }
@@ -894,46 +924,32 @@ a.brand-text:hover {
 /* Layouts de imagem específicos */
 .article-image-full {
     width: 100%;
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-xl);
     display: block;
     clear: both;
-}
-
-.article-image-full img {
-    width: 100%;
-    max-height: 50vh;
-    object-fit: cover;
-    border-radius: var(--borda-raio);
 }
 
 /* Layouts de imagem específicos */
 .article-image-left,
 .article-image-right {
-    margin: 2rem 0;
+    margin: var(--space-m) 0;
     width: 100%;
     display: block;
 }
 
-.article-image-left img,
-.article-image-right img {
-    width: 100%;
-    object-fit: cover;
-    border-radius: var(--borda-raio);
-}
-
 /* Estilização de listas no artigo */
 .article-list {
-    margin: 2rem 0 3rem 0;
-    padding-left: 2rem;
+    margin: var(--space-m) 0 var(--space-l) 0;
+    padding-left: var(--space-m);
 }
 
 .article-list li {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-s);
     position: relative;
     list-style-type: none;
     color: var(--cor-texto-secundario);
-    padding-left: 2rem;
+    padding-left: var(--space-m);
 }
 
 .article-list li::before {
@@ -946,26 +962,22 @@ a.brand-text:hover {
 
 /* Seção CTA no final do artigo */
 .article-cta {
-    padding: 3rem;
+    padding: var(--space-l);
     border-radius: var(--borda-raio);
     text-align: center;
-    margin: 6rem 0 4rem 0;
+    margin: var(--space-xxl) 0 var(--space-xl) 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.article-cta .btn {
-    margin: 0;
-}
-
 .article-cta h3 {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-s);
     font-size: clamp(2rem, 3vw, 2.4rem);
 }
 
 .article-cta p {
-    margin-bottom: 3rem;
+    margin-bottom: var(--space-l);
     font-size: clamp(1.6rem, 2vw, 1.8rem);
     max-width: 60rem;
     margin-left: auto;
@@ -975,39 +987,39 @@ a.brand-text:hover {
 /* Media queries para desktop */
 @media (min-width: 768px) {
     .article-header h1 {
-        padding-top: 10rem;
+        padding-top: var(--space-xxl);
         text-align: left;
     }
 
     .article-body {
-        padding: 0 4rem;
+        padding: 0 var(--space-xl);
     }
 
     .article-image-left,
     .article-image-right {
         max-width: 50%;
-        margin: 2rem 0;
+        margin: var(--space-m) 0;
         display: block;
     }
 
     .article-image-left {
         float: left;
-        margin-right: 3rem;
-        margin-top: 0.5rem;
-        margin-bottom: 2rem;
+        margin-right: var(--space-l);
+        margin-top: var(--space-xxs);
+        margin-bottom: var(--space-m);
         clear: left;
     }
 
     .article-image-right {
         float: right;
-        margin-left: 3rem;
-        margin-top: 0.5rem;
-        margin-bottom: 2rem;
+        margin-left: var(--space-l);
+        margin-top: var(--space-xxs);
+        margin-bottom: var(--space-m);
         clear: right;
     }
 
     .article-cta {
-        padding: 6rem;
+        padding: var(--space-xxl);
         clear: both;
     }
 }
@@ -1036,13 +1048,13 @@ a.brand-text:hover {
 /* CALLOUT DE ARTIGO NA PÁGINA INICIAL
 ------------------------------- */
 .article-callout {
-    padding: 5rem 0;
+    padding: var(--space-xl) 0;
 }
 
 .article-callout-content {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: var(--gap-l);
 }
 
 .article-callout-text {
@@ -1050,11 +1062,11 @@ a.brand-text:hover {
 }
 
 .article-callout-text h2 {
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-m);
 }
 
 .article-callout-text p {
-    margin-bottom: 3rem;
+    margin-bottom: var(--space-l);
     font-size: clamp(1.6rem, 2vw, 1.8rem);
     max-width: 60rem;
 }
@@ -1066,13 +1078,6 @@ a.brand-text:hover {
     align-items: center;
 }
 
-.article-callout-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: var(--borda-raio);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
 @media (min-width: 992px) {
     .article-callout-content {
         flex-direction: row;
@@ -1080,7 +1085,7 @@ a.brand-text:hover {
     }
 
     .article-callout-text {
-        padding-right: 4rem;
+        padding-right: var(--space-xl);
     }
 }
 
@@ -1089,7 +1094,7 @@ a.brand-text:hover {
 .section-insights {
     position: relative;
     overflow: hidden;
-    padding: 7rem 0;
+    padding: var(--space-xxl) 0;
 }
 
 .insight-card {
@@ -1103,8 +1108,8 @@ a.brand-text:hover {
     background-size: 200% 200%;
     background-position: 0% 0%;
     border-radius: 1.6rem;
-    padding: 3.5rem 3rem;
-    margin: 1rem;
+    padding: var(--space-l) var(--space-l);
+    margin: var(--space-xs);
     overflow: hidden;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -1138,7 +1143,7 @@ a.brand-text:hover {
 
 .insight-card h3 {
     font-size: clamp(2.2rem, 4vw, 3.2rem);
-    margin-bottom: 2.5rem;
+    margin-bottom: var(--space-m);
     color: var(--cor-texto-primario);
     transition: transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1),
         text-shadow 0.6s ease;
@@ -1152,9 +1157,9 @@ a.brand-text:hover {
 .insight-card p {
     font-size: clamp(1.6rem, 2vw, 1.8rem);
     color: var(--cor-texto-secundario);
-    margin-bottom: 3rem;
+    margin-bottom: var(--space-l);
     max-width: 60rem;
-    line-height: 1.7;
+    line-height: var(--line-height-texto);
     transition: transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
@@ -1166,7 +1171,7 @@ a.brand-text:hover {
     position: relative;
     height: 16rem;
     width: 100%;
-    margin-top: 3rem;
+    margin-top: var(--space-l);
     z-index: 1;
     opacity: 0.7;
     transition: transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1),
@@ -1310,8 +1315,8 @@ a.brand-text:hover {
 @media (min-width: 768px) {
     .insight-card {
         flex-direction: row;
-        gap: 4rem;
-        padding: 4rem;
+        gap: var(--gap-l);
+        padding: var(--space-xl);
     }
 
     .insight-visual {
@@ -1324,11 +1329,11 @@ a.brand-text:hover {
 
 @media (min-width: 992px) {
     .section-insights {
-        padding: 8rem 0;
+        padding: var(--space-xxxl) 0;
     }
 
     .insight-card {
-        margin: 2rem auto;
+        margin: var(--space-m) auto;
         max-width: 100rem;
     }
 }
