@@ -1,1 +1,7 @@
- 
+<!-- Este é um arquivo de texto SVG usado como placeholder para android-chrome-192x192.png -->
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" fill="none">
+  <rect width="192" height="192" rx="48" fill="#2563eb"/>
+  <rect x="48" y="48" width="96" height="96" rx="8" fill="white"/>
+  <path d="M72 80L96 104L72 104V80Z" fill="#2563eb"/>
+  <path d="M104 92H120C123.314 92 126 94.6863 126 98C126 101.314 123.314 104 120 104H104C100.686 104 98 101.314 98 98C98 94.6863 100.686 92 104 92Z" fill="#2563eb"/>
+</svg> 

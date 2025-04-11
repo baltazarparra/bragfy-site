@@ -16,10 +16,7 @@
     <link rel="canonical" href="https://bragfy.com.br" />
 
     <!-- Favicons -->
-    <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
-    <link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link rel="icon" href="favicon/favicon.ico" sizes="any" />
 
     <!-- Preload fonts -->
     <link
@@ -35,11 +32,54 @@
     <!-- Estilos -->
     <link rel="stylesheet" href="css/style.css" />
 
-    <!-- Three.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/WebGL.js"></script>
+    <!-- Three.js a partir de CDN -->
+    <script src="https://unpkg.com/three@0.149.0/build/three.min.js"></script>
+
+    <!-- Loader personalizado -->
+    <script src="js/vendor/GLTFLoader.js"></script>
+
+    <!-- Three.js viewer script -->
+    <script src="js/3d-viewer.js"></script>
+
+    <!-- Script para verificar se o GLTFLoader foi carregado corretamente -->
+    <script>
+      // Verificar se o GLTFLoader está disponível após o carregamento
+      window.addEventListener("DOMContentLoaded", function () {
+        console.log("Verificando GLTFLoader:", typeof GLTFLoader);
+        if (typeof GLTFLoader === "undefined") {
+          console.error("GLTFLoader não foi carregado corretamente!");
+        } else {
+          console.log("GLTFLoader carregado com sucesso!");
+        }
+      });
+    </script>
+
+    <!-- Script de diagnóstico para monitor de erros -->
+    <script>
+      // Monitor de erros de carregamento
+      window.addEventListener("error", function (event) {
+        console.error(
+          "Erro capturado globalmente:",
+          event.message,
+          event.filename,
+          event.lineno
+        );
+        // Verificar erros do Three.js com URL completo
+        if (
+          event.filename &&
+          (event.filename.includes("three") ||
+            event.filename.includes("unpkg.com/three"))
+        ) {
+          console.error("Erro relacionado ao Three.js detectado:", event);
+        }
+      });
+
+      // Verificar inicialização do DOM
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("DOM carregado, verificando elementos 3D:");
+        console.log("Viewer existe:", !!document.getElementById("viewer"));
+      });
+    </script>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -141,10 +181,8 @@
             >
           </div>
           <div class="hero-image">
-            <div id="model-container" class="model-viewer">
-              <div id="loading-indicator">Carregando modelo 3D...</div>
-            </div>
-            <!-- Fallback para quando JavaScript está desativado ou WebGL não é suportado -->
+            <div id="viewer" class="model-viewer"></div>
+            <!-- Fallback para quando JavaScript está desativado -->
             <noscript>
               <div class="fallback-image">
                 <img
@@ -302,7 +340,83 @@
       </div>
     </footer>
 
-    <!-- Script do visualizador 3D -->
-    <script src="js/scene.js"></script>
+    <!-- Script para desenvolvimento local (não incluir em produção) -->
+    <script>
+      // Guia para desenvolvimento local:
+      // 1. Instale o Node.js (https://nodejs.org)
+      // 2. Execute o servidor local com o comando:
+      //    node server.js
+      //
+      // Isso irá servir o site localmente com os tipos MIME corretos
+      // e evitar problemas de CORS ao carregar o modelo 3D
+      //
+      // Caso não tenha o arquivo server.js, crie-o com o seguinte conteúdo:
+      /*
+      const http = require('http');
+      const fs = require('fs');
+      const path = require('path');
+
+      const PORT = 3000;
+
+      const MIME_TYPES = {
+        '.html': 'text/html',
+        '.css': 'text/css',
+        '.js': 'application/javascript',
+        '.json': 'application/json',
+        '.svg': 'image/svg+xml',
+        '.png': 'image/png',
+        '.jpg': 'image/jpeg',
+        '.jpeg': 'image/jpeg',
+        '.ico': 'image/x-icon',
+        '.glb': 'model/gltf-binary',
+        '.gltf': 'model/gltf+json',
+        '.webmanifest': 'application/manifest+json'
+      };
+
+      const server = http.createServer((req, res) => {
+        console.log(`${req.method} ${req.url}`);
+        
+        // Normalizar URL
+        let url = req.url;
+        if (url === '/') {
+          url = '/index.html';
+        }
+
+        // Resolver caminho do arquivo
+        const filePath = path.join(process.cwd(), url);
+        
+        // Verificar se o arquivo existe
+        fs.access(filePath, fs.constants.F_OK, (err) => {
+          if (err) {
+            console.error(`Arquivo não encontrado: ${filePath}`);
+            res.writeHead(404);
+            res.end('404 Not Found');
+            return;
+          }
+          
+          // Determinar tipo MIME
+          const ext = path.extname(filePath);
+          const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+          
+          // Servir o arquivo
+          fs.readFile(filePath, (err, data) => {
+            if (err) {
+              console.error(`Erro ao ler arquivo: ${err}`);
+              res.writeHead(500);
+              res.end('500 Internal Server Error');
+              return;
+            }
+            
+            res.writeHead(200, { 'Content-Type': contentType });
+            res.end(data);
+          });
+        });
+      });
+
+      server.listen(PORT, () => {
+        console.log(`Servidor rodando em http://localhost:${PORT}`);
+      });
+      */
+    </script>
   </body>
 </html>

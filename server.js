@@ -132,9 +132,22 @@ function serveFile(filePath, overrideContentType, res) {
     overrideContentType || CONTENT_TYPES[extname] || "text/plain";
 
   // Verifica se deve adicionar charset=utf-8
-  const headers = { "Content-Type": contentType };
+  const headers = {
+    "Content-Type": contentType,
+    // Adiciona cabeçalhos CORS para permitir carregamento de recursos
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Cross-Origin-Resource-Policy": "cross-origin"
+  };
+
   if (TEXT_TYPES.includes(extname) && !overrideContentType) {
     headers["Content-Type"] += "; charset=utf-8";
+  }
+
+  // Caso seja um arquivo GLB, adiciona cabeçalhos específicos para modelos 3D
+  if (extname === ".glb") {
+    headers["Content-Disposition"] = "inline";
   }
 
   // Lê o arquivo de forma assíncrona
