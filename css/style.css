@@ -8,42 +8,44 @@
     --cor-destaque-links: #2997FF;
     --cor-borda-sutil: #424245;
 
-    /* Sistema de espaçamento */
+    /* Sistema de espaçamento - Aumentado */
     --space-xxxs: 0.25rem;
-    /* 4px */
-    --space-xxs: 0.5rem;
-    /* 8px */
-    --space-xs: 1rem;
-    /* 16px */
-    --space-s: 1.5rem;
-    /* 24px */
-    --space-m: 2rem;
-    /* 32px */
-    --space-l: 3rem;
-    /* 48px */
-    --space-xl: 4rem;
-    /* 64px */
-    --space-xxl: 6rem;
-    /* 96px */
-    --space-xxxl: 8rem;
-    /* 128px */
+    /* 4px (mantido para detalhes finos) */
+    --space-xxs: 0.6rem;
+    /* 9.6px */
+    --space-xs: 1.2rem;
+    /* 19.2px */
+    --space-s: 1.8rem;
+    /* 28.8px */
+    --space-m: 2.4rem;
+    /* 38.4px */
+    --space-l: 3.6rem;
+    /* 57.6px */
+    --space-xl: 5rem;
+    /* 80px */
+    --space-xxl: 7.5rem;
+    /* 120px */
+    --space-xxxl: 10rem;
+    /* 160px */
 
-    /* Aliases para compatibilidade com código existente */
+    /* Aliases (irão refletir os novos valores base) */
     --espacamento-secao-mobile: var(--space-xl);
     --espacamento-secao-desktop: var(--space-xxxl);
     --espacamento-componente: var(--space-m);
+    /* Pode ser ajustado se necessário em componentes específicos */
 
     /* Outros */
     --borda-raio: 0.8rem;
     --transicao-padrao: all 0.2s ease;
     --largura-maxima-container: 120rem;
 
-    /* Line heights */
+    /* Line heights - Ajustado */
     --line-height-titulo: 1.2;
-    --line-height-texto: 1.6;
+    --line-height-texto: 1.7;
+    /* Aumentado */
     --line-height-subtitulo: 1.4;
 
-    /* Gap padrões */
+    /* Gap padrões (irão refletir os novos valores base) */
     --gap-xs: var(--space-xs);
     --gap-s: var(--space-s);
     --gap-m: var(--space-m);
@@ -67,7 +69,8 @@ html {
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 1.7rem;
-    line-height: 1.47;
+    line-height: 1.55;
+    /* Aumentado */
     color: var(--cor-texto-primario);
     background-color: var(--cor-fundo);
     -webkit-font-smoothing: antialiased;
@@ -149,11 +152,26 @@ p {
     max-width: var(--largura-maxima-container);
     margin: 0 auto;
     padding: 0 var(--space-m);
+    /* Padding base aumentado automaticamente */
+}
+
+/* Adiciona padding maior em telas maiores */
+@media (min-width: 768px) {
+    .container {
+        padding: 0 var(--space-l);
+    }
 }
 
 .section {
     padding: var(--espacamento-secao-mobile) 0;
     position: relative;
+}
+
+@media (min-width: 768px) {
+    .section {
+        padding: var(--espacamento-secao-desktop) 0;
+        /* Espaçamento desktop aumentado automaticamente */
+    }
 }
 
 /* HEADER
