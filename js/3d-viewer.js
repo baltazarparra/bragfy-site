@@ -390,7 +390,19 @@ function initThreeJS() {
       targetRotationY = Math.max(Math.min(mouseX * 0.25, 0.35), -0.35);
     });
 
-    // Touch move (mantido no container para interação móvel mais precisa)
+    // Verificar se é um dispositivo com tela sensível ao toque
+    const isTouchDevice =
+      "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+    // Para dispositivos móveis, desabilitamos a interação de toque com o modelo 3D
+    if (isTouchDevice && window.innerWidth < 768) {
+      console.log(
+        "Dispositivo móvel detectado: desabilitando interação de toque com o modelo 3D para permitir scroll normal"
+      );
+      return; // Não adicionar o evento touchmove em dispositivos móveis
+    }
+
+    // Touch move (apenas em dispositivos não-móveis ou tablets)
     container.addEventListener(
       "touchmove",
       (event) => {
@@ -406,6 +418,7 @@ function initThreeJS() {
           targetRotationY = Math.max(Math.min(mouseX * 0.5, 0.6), -0.6);
 
           // Prevenir scroll na página durante interação com o modelo
+          // (apenas para dispositivos não-móveis)
           event.preventDefault();
         }
       },
