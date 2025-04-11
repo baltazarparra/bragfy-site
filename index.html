@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bragfy - Documente seu trabalho diariamente via Telegram</title>
+    <title>Bragfy 🏆 - Documente seu trabalho diariamente via Telegram</title>
     <meta
       name="description"
-      content="Bragfy é um agente inteligente que ajuda profissionais a documentarem atividades no trabalho, diretamente via Telegram."
+      content="Bragfy 🏆 é um agente inteligente que ajuda profissionais a documentarem atividades no trabalho, diretamente via Telegram."
     />
     <meta
       name="keywords"
@@ -35,16 +35,22 @@
     <!-- Estilos -->
     <link rel="stylesheet" href="css/style.css" />
 
+    <!-- Three.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/WebGL.js"></script>
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://bragfy.com.br" />
     <meta
       property="og:title"
-      content="Bragfy - Documente seu trabalho diariamente via Telegram"
+      content="Bragfy 🏆 - Documente seu trabalho diariamente via Telegram"
     />
     <meta
       property="og:description"
-      content="Bragfy é um agente inteligente que ajuda profissionais a documentarem atividades no trabalho, diretamente via Telegram."
+      content="Bragfy 🏆 é um agente inteligente que ajuda profissionais a documentarem atividades no trabalho, diretamente via Telegram."
     />
     <meta
       property="og:image"
@@ -56,11 +62,11 @@
     <meta property="twitter:url" content="https://bragfy.com.br" />
     <meta
       property="twitter:title"
-      content="Bragfy - Documente seu trabalho diariamente via Telegram"
+      content="Bragfy 🏆 - Documente seu trabalho diariamente via Telegram"
     />
     <meta
       property="twitter:description"
-      content="Bragfy é um agente inteligente que ajuda profissionais a documentarem atividades no trabalho, diretamente via Telegram."
+      content="Bragfy 🏆 é um agente inteligente que ajuda profissionais a documentarem atividades no trabalho, diretamente via Telegram."
     />
     <meta
       property="twitter:image"
@@ -72,17 +78,17 @@
       {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Bragfy",
+        "name": "Bragfy 🏆",
         "url": "https://bragfy.com.br",
-        "logo": "https://bragfy.com.br/img/bragfy-logo.svg",
-        "description": "Bragfy é um agente inteligente que ajuda profissionais a documentarem atividades no trabalho, diretamente via Telegram."
+        "logo": "https://bragfy.com.br/img/og-image.svg",
+        "description": "Bragfy 🏆 é um agente inteligente que ajuda profissionais a documentarem atividades no trabalho, diretamente via Telegram."
       }
     </script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": "Bragfy",
+        "name": "Bragfy 🏆",
         "url": "https://bragfy.com.br"
       }
     </script>
@@ -90,11 +96,11 @@
       {
         "@context": "https://schema.org",
         "@type": "Product",
-        "name": "Bragfy",
+        "name": "Bragfy 🏆",
         "description": "Agente inteligente para documentação de atividades profissionais via Telegram",
         "brand": {
           "@type": "Brand",
-          "name": "Bragfy"
+          "name": "Bragfy 🏆"
         }
       }
     </script>
@@ -103,12 +109,7 @@
     <header class="header">
       <div class="container">
         <div class="logo">
-          <img
-            src="img/bragfy-logo.svg"
-            alt="Logotipo Bragfy"
-            width="120"
-            height="40"
-          />
+          <span class="brand-text">Bragfy 🏆</span>
         </div>
         <nav class="navigation" aria-label="Principal">
           <ul class="nav-list">
@@ -129,22 +130,31 @@
           <div class="hero-content">
             <h1>Documente seu trabalho diário com simplicidade via Telegram</h1>
             <p class="subtitle">
-              Bragfy é um agente inteligente que ajuda profissionais a
+              Bragfy 🏆 é um agente inteligente que ajuda profissionais a
               registrarem suas atividades diárias sem esforço, diretamente no
               Telegram.
             </p>
-            <a href="https://t.me/BragfyBot" class="btn btn-primary"
+            <a
+              href="https://t.me/bragfy_bot?start=landing"
+              class="btn btn-primary"
               >Comece agora no Telegram</a
             >
           </div>
           <div class="hero-image">
-            <img
-              src="img/bragfy-hero.svg"
-              alt="Ilustração do Bragfy em ação no Telegram"
-              width="600"
-              height="400"
-              loading="eager"
-            />
+            <div id="model-container" class="model-viewer">
+              <div id="loading-indicator">Carregando modelo 3D...</div>
+            </div>
+            <!-- Fallback para quando JavaScript está desativado ou WebGL não é suportado -->
+            <noscript>
+              <div class="fallback-image">
+                <img
+                  src="img/bragfy-hero.svg"
+                  alt="Ilustração do Bragfy em ação no Telegram"
+                  width="600"
+                  height="400"
+                />
+              </div>
+            </noscript>
           </div>
         </div>
       </section>
@@ -251,7 +261,9 @@
             Comece agora mesmo e transforme a maneira como você registra suas
             atividades profissionais.
           </p>
-          <a href="https://t.me/BragfyBot" class="btn btn-primary btn-large"
+          <a
+            href="https://t.me/bragfy_bot?start=landing"
+            class="btn btn-primary btn-large"
             >Iniciar com Bragfy no Telegram</a
           >
         </div>
@@ -262,22 +274,16 @@
       <div class="container">
         <div class="footer-content">
           <div class="footer-logo">
-            <img
-              src="img/bragfy-logo-footer.svg"
-              alt="Logotipo Bragfy"
-              width="120"
-              height="40"
-              loading="lazy"
-            />
-            <p>© 2023 Bragfy. Todos os direitos reservados.</p>
+            <span class="brand-text">Bragfy 🏆</span>
+            <p>© 2023 Bragfy 🏆. Todos os direitos reservados.</p>
           </div>
           <div class="footer-links">
             <h4>Links</h4>
             <ul>
               <li><a href="#como-funciona">Como funciona</a></li>
               <li><a href="#beneficios">Benefícios</a></li>
-              <li><a href="termos.html">Termos de Uso</a></li>
-              <li><a href="privacidade.html">Política de Privacidade</a></li>
+              <li><a href="terms.html">Termos de Uso</a></li>
+              <li><a href="privacy.html">Política de Privacidade</a></li>
             </ul>
           </div>
           <div class="footer-contact">
@@ -295,5 +301,8 @@
         </div>
       </div>
     </footer>
+
+    <!-- Script do visualizador 3D -->
+    <script src="js/scene.js"></script>
   </body>
 </html>
