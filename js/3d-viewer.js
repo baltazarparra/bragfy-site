@@ -31,12 +31,12 @@ function initThreeJS() {
 
   // Configuração da câmera
   const camera = new THREE.PerspectiveCamera(
-    25, // Campo de visão ajustado para melhor visualização
+    200, // Campo de visão reduzido para zoom out mais amplo
     container.clientWidth / container.clientHeight,
-    0.1,
-    1000
+    1,
+    0
   );
-  camera.position.set(0, 1.5, 8); // Ajustar posição para melhor visualização
+  camera.position.set(0, 0, 0); // Aumentado Z para afastar mais o modelo
 
   // Configuração do renderizador com fundo transparente
   const renderer = new THREE.WebGLRenderer({
@@ -44,7 +44,7 @@ function initThreeJS() {
     alpha: true // Habilitar transparência
   });
   renderer.setSize(container.clientWidth, container.clientHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1)); // Limitar pixel ratio para melhor performance
   renderer.setClearColor(0x000000, 0); // Fundo totalmente transparente
 
   // Configuração para sombras
@@ -135,19 +135,26 @@ function initThreeJS() {
     });
 
     // Touch move
-    container.addEventListener("touchmove", (event) => {
-      if (event.touches.length > 0) {
-        const touch = event.touches[0];
-        const rect = container.getBoundingClientRect();
-        const x = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
-        const y = -((touch.clientY - rect.top) / rect.height) * 2 + 1;
+    container.addEventListener(
+      "touchmove",
+      (event) => {
+        if (event.touches.length > 0) {
+          const touch = event.touches[0];
+          const rect = container.getBoundingClientRect();
+          const x = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
+          const y = -((touch.clientY - rect.top) / rect.height) * 2 + 1;
 
-        mouseX = x;
-        mouseY = y;
-        targetRotationX = Math.max(Math.min(mouseY * 0.3, 0.4), -0.4);
-        targetRotationY = Math.max(Math.min(mouseX * 0.5, 0.6), -0.6);
-      }
-    });
+          mouseX = x;
+          mouseY = y;
+          targetRotationX = Math.max(Math.min(mouseY * 0.3, 0.4), -0.4);
+          targetRotationY = Math.max(Math.min(mouseX * 0.5, 0.6), -0.6);
+
+          // Prevenir scroll na página durante interação com o modelo
+          event.preventDefault();
+        }
+      },
+      { passive: false }
+    );
   }
 
   // Configurar interação
@@ -177,6 +184,22 @@ function initThreeJS() {
   // Iniciar animação
   animate();
 
+  // Ajustar câmera com base no tamanho da tela
+  function adjustCameraForScreenSize() {
+    // Ajusta FOV e posição com base no tamanho da tela
+    const isMobile = window.innerWidth < 768;
+
+    if (isMobile) {
+      camera.fov = 25; // FOV ligeiramente maior para mobiles
+      camera.position.z = 11; // Mais afastado para ver o modelo completo
+    } else {
+      camera.fov = 10; // FOV menor para desktop
+      camera.position.z = 50; // Distância padrão
+    }
+
+    camera.updateProjectionMatrix();
+  }
+
   // Carregar o modelo
   console.log("Iniciando carregamento do modelo paper.glb...");
   try {
@@ -187,8 +210,10 @@ function initThreeJS() {
         model = gltf.scene;
         console.log("Modelo carregado com sucesso!", gltf);
 
-        // Ajustar escala do modelo
-        model.scale.set(4.0, 4.0, 4.0);
+        // Ajustar escala do modelo com base no tamanho da tela
+        const isMobile = window.innerWidth < 768;
+        const scale = isMobile ? 3.5 : 4.0;
+        model.scale.set(scale, scale, scale);
         console.log("Escala do modelo ajustada");
 
         // Processar materiais e meshes
@@ -229,9 +254,14 @@ function initThreeJS() {
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
 
+        // Adicionar margem ao redor do modelo
+        const margin = 0.1; // 10% de margem
+        const maxDimension = Math.max(size.x, size.y, size.z);
+        const scaleFactor = 1 / (1 + margin);
+
         // Ajustar posição para centralizar
         model.position.x = -center.x;
-        model.position.y = -center.y + size.y * 0.5; // Elevar mais para melhor visibilidade
+        model.position.y = -center.y + size.y * 0.45; // Ajustado para ficar mais centrado
         model.position.z = -center.z;
 
         console.log("Modelo posicionado e centralizado:", {
@@ -239,6 +269,9 @@ function initThreeJS() {
           centro: center,
           posição: model.position
         });
+
+        // Ajustar câmera após carregar o modelo
+        adjustCameraForScreenSize();
       },
       // Callback de progresso
       (xhr) => {
@@ -261,9 +294,22 @@ function initThreeJS() {
 
   // Função para redimensionar o canvas conforme o tamanho do container
   function onWindowResize() {
+    // Atualizar dimensões da câmera
     camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
+
+    // Atualizar tamanho do renderizador
     renderer.setSize(container.clientWidth, container.clientHeight);
+
+    // Ajustar câmera com base no novo tamanho da tela
+    adjustCameraForScreenSize();
+
+    // Se o modelo estiver carregado, ajustar a escala conforme necessário
+    if (model) {
+      const isMobile = window.innerWidth < 768;
+      const scale = isMobile ? 3.5 : 4.0;
+      model.scale.set(scale, scale, scale);
+    }
   }
 
   // Adicionar listener para redimensionamento da janela
