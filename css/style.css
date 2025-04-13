@@ -244,16 +244,28 @@ a.brand-text:hover {
 /* HERO SECTION
 ------------------------------- */
 .hero {
-    padding: var(--space-xl) 0 var(--space-xxl);
+    padding: 0;
     position: relative;
     overflow: hidden;
     background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.07) 21%, rgba(255, 255, 255, 0.04) 40%, rgba(30, 30, 32, 0.02) 60%, rgba(0, 0, 0, 0) 0), #0f0d0d;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    /* Impedir que o scroll possa ocorrer na horizontal */
+    width: 100%;
+    max-width: 100vw;
 }
 
 .hero .container {
     display: flex;
     flex-direction: column;
     gap: var(--gap-l);
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+    width: 100%;
+    justify-content: center;
+    /* Garantir que mesmo em dispositivos muito altos, o conteúdo fique centralizado */
+    min-height: calc(100vh - var(--space-xl) * 2);
 }
 
 .hero-content {
@@ -393,9 +405,7 @@ a.brand-text:hover {
         bottom: 0;
         pointer-events: none;
         z-index: 10;
-        background: linear-gradient(to bottom,
-                rgba(0, 0, 0, 0.1),
-                rgba(0, 0, 0, 0));
+        background: transparent;
     }
 }
 
@@ -407,7 +417,7 @@ a.brand-text:hover {
 
 @media (min-width: 992px) {
     .hero {
-        padding: var(--space-xxl) 0 var(--space-xxxl);
+        min-height: 100vh;
     }
 
     .hero .container {
@@ -427,6 +437,16 @@ a.brand-text:hover {
 
     .model-viewer {
         height: 46rem;
+    }
+
+    .iphone-mockup {
+        max-width: 360px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .iphone-mockup {
+        max-width: 380px;
     }
 }
 
@@ -1341,5 +1361,472 @@ a.brand-text:hover {
     .insight-card {
         margin: var(--space-m) auto;
         max-width: 100rem;
+    }
+}
+
+/* Estilos para as novas seções de features */
+.section-feature {
+    padding: 5rem 0;
+}
+
+.section-feature.section-alt {
+    background-color: var(--color-bg-alt);
+}
+
+.feature-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.feature-image {
+    flex: 1;
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: 1rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature-image:hover {
+    transform: translateY(-5px);
+}
+
+.feature-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.feature-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.feature-text h2 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-primary);
+}
+
+.feature-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .feature-row {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .feature-row--reverse {
+        flex-direction: row-reverse;
+    }
+
+    .feature-image {
+        max-width: 48%;
+    }
+
+    .feature-text {
+        max-width: 48%;
+    }
+}
+
+/* Seção unificada de recursos */
+.section-recursos {
+    padding: var(--space-xxl) 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0));
+}
+
+.recursos-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.recurso-bloco {
+    position: relative;
+}
+
+.recurso-conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-l);
+    align-items: center;
+}
+
+.recurso-texto {
+    order: 2;
+    width: 100%;
+}
+
+.recurso-texto h2 {
+    margin-bottom: var(--space-s);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: var(--line-height-titulo);
+    letter-spacing: -0.02em;
+    color: var(--cor-texto-primario);
+}
+
+.recurso-texto p {
+    margin-bottom: var(--space-l);
+    font-size: clamp(1.6rem, 2vw, 1.8rem);
+    line-height: var(--line-height-texto);
+    color: var(--cor-texto-secundario);
+    max-width: 54rem;
+}
+
+.recurso-imagem {
+    order: 1;
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--borda-raio);
+    box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.12);
+    transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1),
+        box-shadow 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.recurso-imagem:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 1.6rem 4rem rgba(0, 0, 0, 0.16);
+}
+
+.recurso-imagem img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.recurso-separador {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0.08) 30%,
+            rgba(255, 255, 255, 0.08) 70%,
+            rgba(255, 255, 255, 0));
+    margin: var(--space-m) 0;
+}
+
+@media (min-width: 768px) {
+    .section-recursos {
+        padding: var(--space-xxxl) 0;
+    }
+
+    .recurso-conteudo {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-xl);
+    }
+
+    .recurso-texto {
+        order: 1;
+        flex: 1;
+    }
+
+    .recurso-imagem {
+        order: 2;
+        flex: 1;
+        max-width: 48%;
+    }
+
+    .recurso-conteudo--inverso .recurso-texto {
+        order: 2;
+    }
+
+    .recurso-conteudo--inverso .recurso-imagem {
+        order: 1;
+    }
+
+    .recurso-separador {
+        margin: var(--space-xl) 0;
+    }
+}
+
+/* iPhone Mockup para Telegram */
+.iphone-mockup {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    border-radius: 42px;
+    background-color: #1A1A1C;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3),
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.08);
+    padding: 12px;
+    transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1),
+        box-shadow 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    aspect-ratio: 19/39;
+    /* Proporção aproximada de um iPhone moderno */
+}
+
+.iphone-mockup::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 35%;
+    height: 24px;
+    background-color: #1A1A1C;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    z-index: 2;
+}
+
+.iphone-mockup::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25%;
+    height: 6px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    z-index: 3;
+}
+
+.iphone-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 34px;
+    background-color: #000;
+}
+
+.iphone-screen img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.recurso-imagem:hover .iphone-mockup {
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+        0 10px 20px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.12);
+}
+
+/* Substitua os estilos existentes do recurso-imagem para a seção Telegram */
+#registro-telegram .recurso-imagem {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+}
+
+/* Ajustes responsivos adicionais */
+@media (max-width: 480px) {
+    .iphone-mockup {
+        max-width: 280px;
+    }
+}
+
+@media (min-width: 768px) {
+    #registro-telegram .recurso-imagem {
+        max-width: 48%;
+    }
+
+    .iphone-mockup {
+        max-width: 320px;
+    }
+}
+
+/* Notebook Frame para Document.jpg */
+.notebook-frame {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #f5f5f7;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12),
+        0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 20px 20px 25px 40px;
+    transform: rotate(-1deg);
+    transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1),
+        box-shadow 0.3s ease;
+}
+
+/* Efeito de espiral na lateral esquerda */
+.notebook-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15px;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            transparent 5%,
+            #e0e0e0 5%,
+            #e0e0e0 7%,
+            transparent 7%,
+            transparent 12%,
+            #e0e0e0 12%,
+            #e0e0e0 14%,
+            transparent 14%,
+            transparent 19%,
+            #e0e0e0 19%,
+            #e0e0e0 21%,
+            transparent 21%,
+            transparent 26%,
+            #e0e0e0 26%,
+            #e0e0e0 28%,
+            transparent 28%,
+            transparent 33%,
+            #e0e0e0 33%,
+            #e0e0e0 35%,
+            transparent 35%,
+            transparent 40%,
+            #e0e0e0 40%,
+            #e0e0e0 42%,
+            transparent 42%,
+            transparent 47%,
+            #e0e0e0 47%,
+            #e0e0e0 49%,
+            transparent 49%,
+            transparent 54%,
+            #e0e0e0 54%,
+            #e0e0e0 56%,
+            transparent 56%,
+            transparent 61%,
+            #e0e0e0 61%,
+            #e0e0e0 63%,
+            transparent 63%,
+            transparent 68%,
+            #e0e0e0 68%,
+            #e0e0e0 70%,
+            transparent 70%,
+            transparent 75%,
+            #e0e0e0 75%,
+            #e0e0e0 77%,
+            transparent 77%,
+            transparent 82%,
+            #e0e0e0 82%,
+            #e0e0e0 84%,
+            transparent 84%,
+            transparent 89%,
+            #e0e0e0 89%,
+            #e0e0e0 91%,
+            transparent 91%,
+            transparent 96%,
+            #e0e0e0 96%,
+            #e0e0e0 98%,
+            transparent 98%,
+            transparent 100%);
+}
+
+/* Círculos da espiral */
+.notebook-frame::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 15px;
+    width: 10px;
+    height: 80%;
+    transform: translateX(-50%);
+    background-image:
+        radial-gradient(circle, rgba(41, 151, 255, 0.7) 2px, transparent 3px),
+        radial-gradient(circle, rgba(41, 151, 255, 0.7) 2px, transparent 3px),
+        radial-gradient(circle, rgba(41, 151, 255, 0.7) 2px, transparent 3px),
+        radial-gradient(circle, rgba(41, 151, 255, 0.7) 2px, transparent 3px),
+        radial-gradient(circle, rgba(41, 151, 255, 0.7) 2px, transparent 3px),
+        radial-gradient(circle, rgba(41, 151, 255, 0.7) 2px, transparent 3px),
+        radial-gradient(circle, rgba(41, 151, 255, 0.7) 2px, transparent 3px),
+        radial-gradient(circle, rgba(41, 151, 255, 0.7) 2px, transparent 3px);
+    background-position:
+        0 10%,
+        0 22%,
+        0 34%,
+        0 46%,
+        0 58%,
+        0 70%,
+        0 82%,
+        0 94%;
+    background-repeat: no-repeat;
+}
+
+.notebook-paper {
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+    padding: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) inset;
+    background-image: linear-gradient(#e5e5e5 1px, transparent 1px);
+    background-size: 100% 25px;
+    background-position: 0 5px;
+}
+
+/* Efeito de linhas horizontais no papel */
+.notebook-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 40px;
+    right: 20px;
+    height: 100%;
+    background-image:
+        linear-gradient(90deg,
+            transparent 39px,
+            #ff9500 39px,
+            #ff9500 40px,
+            transparent 40px);
+    background-size: 100% 25px;
+    opacity: 0.1;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.notebook-paper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 1;
+    border-radius: 3px;
+}
+
+.recurso-imagem:hover .notebook-frame {
+    transform: rotate(0deg) translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15),
+        0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Media queries para ajustes responsivos */
+@media (max-width: 480px) {
+    .notebook-frame {
+        max-width: 280px;
+        padding: 15px 15px 20px 30px;
+    }
+
+    .notebook-frame::before,
+    .notebook-frame::after {
+        left: 10px;
+    }
+
+    .notebook-paper::before {
+        left: 30px;
+        right: 15px;
+    }
+}
+
+@media (min-width: 768px) {
+    .notebook-frame {
+        max-width: 100%;
     }
 }
