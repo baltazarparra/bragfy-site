@@ -1618,7 +1618,7 @@ a.brand-text:hover {
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
     object-position: top center;
 }
 
@@ -1652,6 +1652,10 @@ a.brand-text:hover {
 
     .iphone-mockup {
         max-width: 320px;
+    }
+
+    .iphone-screen img {
+        object-fit: cover;
     }
 }
 
